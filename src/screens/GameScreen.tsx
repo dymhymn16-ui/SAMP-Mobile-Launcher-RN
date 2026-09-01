@@ -1,4 +1,5 @@
 import React from 'react';
+import GtaSetupModule from '../modules/GtaSetupModule';
 import {
   ScrollView,
   StyleSheet,
@@ -37,8 +38,8 @@ export const GameScreen = React.memo(() => {
         <TouchableOpacity
           style={styles.playButton}
           onPress={() => {
-            // دخول إلى سيرفر NAVARA
-          }}>
+  GtaSetupModule.startGame();
+}}
           <Text style={styles.playText}>
             دخول إلى NAVARA
           </Text>
