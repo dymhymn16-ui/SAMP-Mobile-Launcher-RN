@@ -19,7 +19,7 @@ const cdnCache = 'https://game.navara-rp.com/mobile/cache';
 const cdnLauncher = 'https://game.navara-rp.com/mobile/launcher';
 
 
-const appVersion = '0.0.39';
+const appVersion = '1.0.0';
 const rss = 'https://touch-rp.com/api/launcer/news';
 
 const filesContinue = ['settings.ini', 'gta_sa.set', 'svconfig.ini'];
