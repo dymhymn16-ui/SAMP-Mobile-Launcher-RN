@@ -11,6 +11,7 @@ export const GameScreen = React.memo(() => {
           <Text style={styles.title}>NAVARA</Text>
           <Text style={styles.subtitle}>ROLEPLAY</Text>
           <Text style={styles.status}>● السيرفر متصل</Text>
+<Text style={styles.players}>👥 اللاعبين: 0 / 1000</Text>
         </View>
 
         <View style={styles.info}>
@@ -78,7 +79,12 @@ const styles = StyleSheet.create({
     fontSize: 15,
     fontWeight: '700',
   },
-
+players: {
+  color: '#ffffff',
+  marginTop: 8,
+  fontSize: 15,
+  fontWeight: '600',
+},
   info: {
     backgroundColor: '#202431',
     borderRadius: 16,
