@@ -20,9 +20,16 @@ export const GameScreen = React.memo(() => {
           </Text>
         </View>
 
-        <TouchableOpacity style={styles.playButton}>
-          <Text style={styles.playText}>دخول إلى NAVARA</Text>
-        </TouchableOpacity>
+        <TouchableOpacity
+  style={styles.playButton}
+  onPress={() => {
+    // دخول إلى سيرفر NAVARA
+  }}
+>
+  <Text style={styles.playText}>دخول إلى NAVARA</Text>
+</TouchableOpacity>
+          
+        
 
         <View style={styles.news}>
           <Text style={styles.newsTitle}>📰 آخر الأخبار</Text>
