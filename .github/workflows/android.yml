@@ -1,0 +1,43 @@
+name: Build NAVARA Launcher
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: تحميل المشروع
+        uses: actions/checkout@v4
+
+      - name: إعداد Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 16
+          cache: yarn
+
+      - name: إعداد Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: 11
+
+      - name: تثبيت Yarn
+        run: npm install -g yarn@1.22.19
+
+      - name: تثبيت المكتبات
+        run: yarn install --frozen-lockfile
+
+      - name: إعطاء صلاحية Gradle
+        run: chmod +x android/gradlew
+
+      - name: بناء APK
+        working-directory: android
+        run: ./gradlew assembleRelease --no-daemon
+
+      - name: رفع APK
+        uses: actions/upload-artifact@v4
+        with:
+          name: NAVARA-Launcher
+          path: android/app/build/outputs/apk/release/*.apk
