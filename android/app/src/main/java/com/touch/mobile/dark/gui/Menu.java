@@ -31,7 +31,6 @@ public class Menu {
     public TextView menuTitle;
 
     private final Animation anim;
-    private int index = -1;
 
     private final ArrayList<DataDialogMenu> dataDialogMenuArrayList =
             new ArrayList<>();
@@ -119,25 +118,100 @@ public class Menu {
     private static final int ATM = 513;
 
     // =========================================================
-    // معارض السيارات
+    // الشخصية
     // =========================================================
 
-    private static final int CAR_DEALER_1 = 600;
-    private static final int CAR_DEALER_2 = 601;
-    private static final int CAR_DEALER_3 = 602;
-    private static final int CAR_DEALER_4 = 603;
-    private static final int CAR_DEALER_5 = 604;
+    private static final int CHARACTER_INFO = 1000;
+    private static final int CHARACTER_STATS = 1001;
+    private static final int CHARACTER_SKILLS = 1002;
+    private static final int CHARACTER_ACHIEVEMENTS = 1003;
+    private static final int CHARACTER_WARNINGS = 1004;
+    private static final int CHARACTER_APPEARANCE = 1005;
+    private static final int CHARACTER_STATUS = 1006;
 
     // =========================================================
-    // معارض الدراجات
+    // المركبات
     // =========================================================
 
-    private static final int BIKE_DEALER_1 = 650;
-    private static final int BIKE_DEALER_2 = 651;
-    private static final int BIKE_DEALER_3 = 652;
+    private static final int MY_VEHICLES = 1100;
+    private static final int VEHICLE_SPAWN = 1101;
+    private static final int VEHICLE_PARK = 1102;
+    private static final int VEHICLE_LOCK = 1103;
+    private static final int VEHICLE_ENGINE = 1104;
+    private static final int VEHICLE_INFO = 1105;
 
     // =========================================================
-    // القائمة
+    // البنك
+    // =========================================================
+
+    private static final int BANK_BALANCE = 1200;
+    private static final int BANK_DEPOSIT = 1201;
+    private static final int BANK_WITHDRAW = 1202;
+    private static final int BANK_TRANSFER = 1203;
+    private static final int BANK_TRANSACTIONS = 1204;
+
+    // =========================================================
+    // الوظائف
+    // =========================================================
+
+    private static final int JOB_INFO = 1300;
+    private static final int JOB_START = 1301;
+    private static final int JOB_STOP = 1302;
+    private static final int JOB_SKILL = 1303;
+    private static final int JOB_SALARY = 1304;
+
+    // =========================================================
+    // العقارات
+    // =========================================================
+
+    private static final int MY_PROPERTIES = 1400;
+    private static final int PROPERTY_INFO = 1401;
+    private static final int PROPERTY_ENTER = 1402;
+    private static final int PROPERTY_STORAGE = 1403;
+
+    // =========================================================
+    // الرخص
+    // =========================================================
+
+    private static final int LICENSE_CAR = 1500;
+    private static final int LICENSE_BIKE = 1501;
+    private static final int LICENSE_WEAPON = 1502;
+    private static final int LICENSE_TRUCK = 1503;
+    private static final int LICENSE_AIRCRAFT = 1504;
+    private static final int LICENSE_BOAT = 1505;
+
+    // =========================================================
+    // الحقيبة
+    // =========================================================
+
+    private static final int INVENTORY_ITEMS = 1600;
+    private static final int INVENTORY_WEAPONS = 1601;
+    private static final int INVENTORY_KEYS = 1602;
+    private static final int INVENTORY_DOCUMENTS = 1603;
+    private static final int INVENTORY_MATERIALS = 1604;
+
+    // =========================================================
+    // المهام
+    // =========================================================
+
+    private static final int DAILY_MISSIONS = 1700;
+    private static final int JOB_MISSIONS = 1701;
+    private static final int GANG_MISSIONS = 1702;
+    private static final int POLICE_MISSIONS = 1703;
+    private static final int MISSION_REWARDS = 1704;
+
+    // =========================================================
+    // الإعدادات
+    // =========================================================
+
+    private static final int SETTINGS_CHAT = 1800;
+    private static final int SETTINGS_CONTROLS = 1801;
+    private static final int SETTINGS_GRAPHICS = 1802;
+    private static final int SETTINGS_SOUND = 1803;
+    private static final int SETTINGS_INTERFACE = 1804;
+
+    // =========================================================
+    // الإنشاء
     // =========================================================
 
     @SuppressLint("InflateParams")
@@ -158,7 +232,7 @@ public class Menu {
                 R.id.br_menu_close_new
         ).setOnClickListener(view -> close());
 
-        this.mRootView =
+        mRootView =
                 ((LayoutInflater)
                         aactivity.getSystemService(
                                 Context.LAYOUT_INFLATER_SERVICE
@@ -169,7 +243,10 @@ public class Menu {
                                 false
                         );
 
-        Utils.HideLayout(menu_layout, false);
+        Utils.HideLayout(
+                menu_layout,
+                false
+        );
     }
 
     // =========================================================
@@ -256,7 +333,6 @@ public class Menu {
                 "🎯 المهام"
         );
 
-        // Capture
         addItem(
                 CAPTURE,
                 R.drawable.br_menu_menu,
@@ -293,24 +369,696 @@ public class Menu {
             View view
     ) {
 
-        index = item.getId();
+        int id = item.getId();
 
         view.startAnimation(anim);
 
         new Handler().postDelayed(() -> {
 
-            switch (index) {
+            switch (id) {
+
+                case CHARACTER:
+                    showCharacter();
+                    break;
 
                 case NAVIGATION:
                     showNavigation();
                     break;
 
+                case VEHICLES:
+                    showVehicles();
+                    break;
+
+                case FINANCE:
+                    showFinance();
+                    break;
+
+                case JOBS:
+                    showJobs();
+                    break;
+
+                case PROPERTIES:
+                    showProperties();
+                    break;
+
+                case LICENSES:
+                    showLicenses();
+                    break;
+
+                case INVENTORY:
+                    showInventory();
+                    break;
+
+                case MISSIONS:
+                    showMissions();
+                    break;
+
+                case CAPTURE:
+                    sendServerAction(CAPTURE);
+                    break;
+
+                case COMMANDS:
+                    showCommands();
+                    break;
+
+                case SETTINGS:
+                    showSettings();
+                    break;
+
+                case GUIDE:
+                    sendServerAction(GUIDE);
+                    break;
+
                 default:
-                    sendServerAction(index);
+                    sendServerAction(id);
                     break;
             }
 
         }, 200);
+    }
+
+    // =========================================================
+    // الشخصية
+    // =========================================================
+
+    private void showCharacter() {
+
+        menuTitle.setText("👤 الشخصية");
+
+        dataDialogMenuArrayList.clear();
+
+        addItem(
+                CHARACTER_INFO,
+                R.drawable.br_menu_menu,
+                "📋 معلومات الشخصية"
+        );
+
+        addItem(
+                CHARACTER_STATS,
+                R.drawable.br_menu_menu,
+                "📊 الإحصائيات"
+        );
+
+        addItem(
+                CHARACTER_SKILLS,
+                R.drawable.br_menu_menu,
+                "⭐ المهارات"
+        );
+
+        addItem(
+                CHARACTER_ACHIEVEMENTS,
+                R.drawable.br_menu_menu,
+                "🏆 الإنجازات"
+        );
+
+        addItem(
+                CHARACTER_WARNINGS,
+                R.drawable.br_menu_menu,
+                "⚠️ التحذيرات"
+        );
+
+        addItem(
+                CHARACTER_APPEARANCE,
+                R.drawable.br_menu_menu,
+                "👕 المظهر"
+        );
+
+        addItem(
+                CHARACTER_STATUS,
+                R.drawable.br_menu_menu,
+                "😴 الحالة"
+        );
+
+        addItem(
+                MAIN_MENU,
+                R.drawable.menu_back,
+                "↩️ رجوع"
+        );
+
+        showRecycler(
+                2,
+                (item, view) -> {
+
+                    if (item.getId() == MAIN_MENU) {
+                        showMainMenu();
+                    } else {
+                        sendServerAction(item.getId());
+                    }
+
+                }
+        );
+    }
+
+    // =========================================================
+    // المركبات
+    // =========================================================
+
+    private void showVehicles() {
+
+        menuTitle.setText("🚗 المركبات");
+
+        dataDialogMenuArrayList.clear();
+
+        addItem(
+                MY_VEHICLES,
+                R.drawable.br_menu_car,
+                "🚘 مركباتي"
+        );
+
+        addItem(
+                VEHICLE_SPAWN,
+                R.drawable.br_menu_car,
+                "🚗 استدعاء مركبة"
+        );
+
+        addItem(
+                VEHICLE_PARK,
+                R.drawable.br_menu_car,
+                "🅿️ إيقاف المركبة"
+        );
+
+        addItem(
+                VEHICLE_LOCK,
+                R.drawable.br_menu_car,
+                "🔐 قفل / فتح المركبة"
+        );
+
+        addItem(
+                VEHICLE_ENGINE,
+                R.drawable.br_menu_car,
+                "🔑 تشغيل / إطفاء المحرك"
+        );
+
+        addItem(
+                VEHICLE_INFO,
+                R.drawable.br_menu_car,
+                "📋 معلومات المركبة"
+        );
+
+        addItem(
+                MAIN_MENU,
+                R.drawable.menu_back,
+                "↩️ رجوع"
+        );
+
+        showRecycler(
+                2,
+                (item, view) -> {
+
+                    if (item.getId() == MAIN_MENU) {
+                        showMainMenu();
+                    } else {
+                        sendServerAction(item.getId());
+                    }
+
+                }
+        );
+    }
+
+    // =========================================================
+    // البنك والمالية
+    // =========================================================
+
+    private void showFinance() {
+
+        menuTitle.setText("💰 البنك والمالية");
+
+        dataDialogMenuArrayList.clear();
+
+        addItem(
+                BANK_BALANCE,
+                R.drawable.br_menu_ruble,
+                "💵 الرصيد"
+        );
+
+        addItem(
+                BANK_DEPOSIT,
+                R.drawable.br_menu_ruble,
+                "📥 إيداع"
+        );
+
+        addItem(
+                BANK_WITHDRAW,
+                R.drawable.br_menu_ruble,
+                "📤 سحب"
+        );
+
+        addItem(
+                BANK_TRANSFER,
+                R.drawable.br_menu_ruble,
+                "💸 تحويل أموال"
+        );
+
+        addItem(
+                BANK_TRANSACTIONS,
+                R.drawable.br_menu_ruble,
+                "📜 سجل العمليات"
+        );
+
+        addItem(
+                MAIN_MENU,
+                R.drawable.menu_back,
+                "↩️ رجوع"
+        );
+
+        showRecycler(
+                2,
+                (item, view) -> {
+
+                    if (item.getId() == MAIN_MENU) {
+                        showMainMenu();
+                    } else {
+                        sendServerAction(item.getId());
+                    }
+
+                }
+        );
+    }
+
+    // =========================================================
+    // الوظائف
+    // =========================================================
+
+    private void showJobs() {
+
+        menuTitle.setText("💼 الوظائف");
+
+        dataDialogMenuArrayList.clear();
+
+        addItem(
+                JOB_INFO,
+                R.drawable.br_menu_menu,
+                "📋 معلومات الوظيفة"
+        );
+
+        addItem(
+                JOB_START,
+                R.drawable.br_menu_menu,
+                "▶️ بدء العمل"
+        );
+
+        addItem(
+                JOB_STOP,
+                R.drawable.br_menu_menu,
+                "⏹️ إنهاء العمل"
+        );
+
+        addItem(
+                JOB_SKILL,
+                R.drawable.br_menu_menu,
+                "⭐ مهارة الوظيفة"
+        );
+
+        addItem(
+                JOB_SALARY,
+                R.drawable.br_menu_ruble,
+                "💵 أرباح الوظيفة"
+        );
+
+        addItem(
+                MAIN_MENU,
+                R.drawable.menu_back,
+                "↩️ رجوع"
+        );
+
+        showRecycler(
+                2,
+                (item, view) -> {
+
+                    if (item.getId() == MAIN_MENU) {
+                        showMainMenu();
+                    } else {
+                        sendServerAction(item.getId());
+                    }
+
+                }
+        );
+    }
+
+    // =========================================================
+    // العقارات
+    // =========================================================
+
+    private void showProperties() {
+
+        menuTitle.setText("🏠 العقارات");
+
+        dataDialogMenuArrayList.clear();
+
+        addItem(
+                MY_PROPERTIES,
+                R.drawable.br_menu_menu,
+                "🏠 عقاراتي"
+        );
+
+        addItem(
+                PROPERTY_INFO,
+                R.drawable.br_menu_menu,
+                "📋 معلومات العقار"
+        );
+
+        addItem(
+                PROPERTY_ENTER,
+                R.drawable.br_menu_menu,
+                "🚪 دخول العقار"
+        );
+
+        addItem(
+                PROPERTY_STORAGE,
+                R.drawable.br_menu_bag,
+                "📦 مخزن العقار"
+        );
+
+        addItem(
+                MAIN_MENU,
+                R.drawable.menu_back,
+                "↩️ رجوع"
+        );
+
+        showRecycler(
+                2,
+                (item, view) -> {
+
+                    if (item.getId() == MAIN_MENU) {
+                        showMainMenu();
+                    } else {
+                        sendServerAction(item.getId());
+                    }
+
+                }
+        );
+    }
+
+    // =========================================================
+    // الرخص
+    // =========================================================
+
+    private void showLicenses() {
+
+        menuTitle.setText("🪪 الرخص");
+
+        dataDialogMenuArrayList.clear();
+
+        addItem(
+                LICENSE_CAR,
+                R.drawable.br_menu_paper,
+                "🚗 رخصة قيادة سيارة"
+        );
+
+        addItem(
+                LICENSE_BIKE,
+                R.drawable.br_menu_paper,
+                "🏍️ رخصة دراجة"
+        );
+
+        addItem(
+                LICENSE_WEAPON,
+                R.drawable.br_menu_paper,
+                "🔫 رخصة سلاح"
+        );
+
+        addItem(
+                LICENSE_TRUCK,
+                R.drawable.br_menu_paper,
+                "🚚 رخصة شاحنة"
+        );
+
+        addItem(
+                LICENSE_AIRCRAFT,
+                R.drawable.br_menu_paper,
+                "✈️ رخصة طيران"
+        );
+
+        addItem(
+                LICENSE_BOAT,
+                R.drawable.br_menu_paper,
+                "🚤 رخصة قارب"
+        );
+
+        addItem(
+                MAIN_MENU,
+                R.drawable.menu_back,
+                "↩️ رجوع"
+        );
+
+        showRecycler(
+                2,
+                (item, view) -> {
+
+                    if (item.getId() == MAIN_MENU) {
+                        showMainMenu();
+                    } else {
+                        sendServerAction(item.getId());
+                    }
+
+                }
+        );
+    }
+
+    // =========================================================
+    // الحقيبة
+    // =========================================================
+
+    private void showInventory() {
+
+        menuTitle.setText("🎒 الحقيبة");
+
+        dataDialogMenuArrayList.clear();
+
+        addItem(
+                INVENTORY_ITEMS,
+                R.drawable.br_menu_bag,
+                "📦 الأغراض"
+        );
+
+        addItem(
+                INVENTORY_WEAPONS,
+                R.drawable.br_menu_bag,
+                "🔫 الأسلحة"
+        );
+
+        addItem(
+                INVENTORY_KEYS,
+                R.drawable.br_menu_bag,
+                "🔑 المفاتيح"
+        );
+
+        addItem(
+                INVENTORY_DOCUMENTS,
+                R.drawable.br_menu_paper,
+                "🪪 الوثائق"
+        );
+
+        addItem(
+                INVENTORY_MATERIALS,
+                R.drawable.br_menu_bag,
+                "🧱 المواد"
+        );
+
+        addItem(
+                MAIN_MENU,
+                R.drawable.menu_back,
+                "↩️ رجوع"
+        );
+
+        showRecycler(
+                2,
+                (item, view) -> {
+
+                    if (item.getId() == MAIN_MENU) {
+                        showMainMenu();
+                    } else {
+                        sendServerAction(item.getId());
+                    }
+
+                }
+        );
+    }
+
+    // =========================================================
+    // المهام
+    // =========================================================
+
+    private void showMissions() {
+
+        menuTitle.setText("🎯 المهام");
+
+        dataDialogMenuArrayList.clear();
+
+        addItem(
+                DAILY_MISSIONS,
+                R.drawable.br_menu_menu,
+                "📅 المهام اليومية"
+        );
+
+        addItem(
+                JOB_MISSIONS,
+                R.drawable.br_menu_menu,
+                "💼 مهام الوظيفة"
+        );
+
+        addItem(
+                GANG_MISSIONS,
+                R.drawable.br_menu_menu,
+                "🏴 مهام العصابة"
+        );
+
+        addItem(
+                POLICE_MISSIONS,
+                R.drawable.br_menu_menu,
+                "👮 مهام الشرطة"
+        );
+
+        addItem(
+                MISSION_REWARDS,
+                R.drawable.br_menu_ruble,
+                "🎁 المكافآت"
+        );
+
+        addItem(
+                MAIN_MENU,
+                R.drawable.menu_back,
+                "↩️ رجوع"
+        );
+
+        showRecycler(
+                2,
+                (item, view) -> {
+
+                    if (item.getId() == MAIN_MENU) {
+                        showMainMenu();
+                    } else {
+                        sendServerAction(item.getId());
+                    }
+
+                }
+        );
+    }
+
+    // =========================================================
+    // الأوامر
+    // =========================================================
+
+    private void showCommands() {
+
+        menuTitle.setText("📋 الأوامر");
+
+        dataDialogMenuArrayList.clear();
+
+        addItem(
+                1900,
+                R.drawable.br_menu_menu,
+                "💬 أوامر المحادثة"
+        );
+
+        addItem(
+                1901,
+                R.drawable.br_menu_menu,
+                "🎭 أوامر RP"
+        );
+
+        addItem(
+                1902,
+                R.drawable.br_menu_menu,
+                "🚗 أوامر المركبات"
+        );
+
+        addItem(
+                1903,
+                R.drawable.br_menu_menu,
+                "👤 أوامر الشخصية"
+        );
+
+        addItem(
+                1904,
+                R.drawable.br_menu_menu,
+                "🏴 أوامر العصابة"
+        );
+
+        addItem(
+                1905,
+                R.drawable.br_menu_menu,
+                "👮 أوامر الشرطة"
+        );
+
+        addItem(
+                MAIN_MENU,
+                R.drawable.menu_back,
+                "↩️ رجوع"
+        );
+
+        showRecycler(
+                2,
+                (item, view) -> {
+
+                    if (item.getId() == MAIN_MENU) {
+                        showMainMenu();
+                    } else {
+                        sendServerAction(item.getId());
+                    }
+
+                }
+        );
+    }
+
+    // =========================================================
+    // الإعدادات
+    // =========================================================
+
+    private void showSettings() {
+
+        menuTitle.setText("⚙️ الإعدادات");
+
+        dataDialogMenuArrayList.clear();
+
+        addItem(
+                SETTINGS_CHAT,
+                R.drawable.br_menu_menu,
+                "💬 إعدادات الشات"
+        );
+
+        addItem(
+                SETTINGS_CONTROLS,
+                R.drawable.br_menu_menu,
+                "🎮 التحكم"
+        );
+
+        addItem(
+                SETTINGS_GRAPHICS,
+                R.drawable.br_menu_menu,
+                "🎨 الرسومات"
+        );
+
+        addItem(
+                SETTINGS_SOUND,
+                R.drawable.br_menu_menu,
+                "🔊 الصوت"
+        );
+
+        addItem(
+                SETTINGS_INTERFACE,
+                R.drawable.br_menu_menu,
+                "🖥️ الواجهة"
+        );
+
+        addItem(
+                MAIN_MENU,
+                R.drawable.menu_back,
+                "↩️ رجوع"
+        );
+
+        showRecycler(
+                2,
+                (item, view) -> {
+
+                    if (item.getId() == MAIN_MENU) {
+                        showMainMenu();
+                    } else {
+                        sendServerAction(item.getId());
+                    }
+
+                }
+        );
     }
 
     // =========================================================
@@ -319,9 +1067,7 @@ public class Menu {
 
     private void showNavigation() {
 
-        menuTitle.setText(
-                "🗺️ الملاحة"
-        );
+        menuTitle.setText("🗺️ الملاحة");
 
         dataDialogMenuArrayList.clear();
 
@@ -363,7 +1109,6 @@ public class Menu {
 
         showRecycler(
                 2,
-                dataDialogMenuArrayList,
                 this::navigationClick
         );
     }
@@ -373,13 +1118,11 @@ public class Menu {
             View view
     ) {
 
-        index = item.getId();
-
         view.startAnimation(anim);
 
         new Handler().postDelayed(() -> {
 
-            switch (index) {
+            switch (item.getId()) {
 
                 case GOVERNMENT:
                     showGovernmentOrganizations();
@@ -415,59 +1158,18 @@ public class Menu {
 
     private void showGovernmentOrganizations() {
 
-        menuTitle.setText(
-                "🏛️ المنظمات الحكومية"
-        );
+        menuTitle.setText("🏛️ المنظمات الحكومية");
 
         dataDialogMenuArrayList.clear();
 
-        addItem(
-                POLICE,
-                R.drawable.br_menu_menu,
-                "👮 الشرطة"
-        );
-
-        addItem(
-                AMBULANCE,
-                R.drawable.br_menu_menu,
-                "🚑 الإسعاف"
-        );
-
-        addItem(
-                FIRE_DEPARTMENT,
-                R.drawable.br_menu_menu,
-                "🚒 الإطفاء"
-        );
-
-        addItem(
-                MECHANIC,
-                R.drawable.br_menu_menu,
-                "🔧 الميكانيكي"
-        );
-
-        addItem(
-                TAXI,
-                R.drawable.br_menu_menu,
-                "🚕 التاكسي"
-        );
-
-        addItem(
-                COURT,
-                R.drawable.br_menu_menu,
-                "⚖️ المحكمة"
-        );
-
-        addItem(
-                GOVERNMENT_ORG,
-                R.drawable.br_menu_menu,
-                "🏛️ الحكومة"
-        );
-
-        addItem(
-                ARMY,
-                R.drawable.br_menu_menu,
-                "🪖 الجيش"
-        );
+        addItem(POLICE, R.drawable.br_menu_menu, "👮 الشرطة");
+        addItem(AMBULANCE, R.drawable.br_menu_menu, "🚑 الإسعاف");
+        addItem(FIRE_DEPARTMENT, R.drawable.br_menu_menu, "🚒 الإطفاء");
+        addItem(MECHANIC, R.drawable.br_menu_menu, "🔧 الميكانيكي");
+        addItem(TAXI, R.drawable.br_menu_menu, "🚕 التاكسي");
+        addItem(COURT, R.drawable.br_menu_menu, "⚖️ المحكمة");
+        addItem(GOVERNMENT_ORG, R.drawable.br_menu_menu, "🏛️ الحكومة");
+        addItem(ARMY, R.drawable.br_menu_menu, "🪖 الجيش");
 
         addItem(
                 NAVIGATION,
@@ -477,7 +1179,6 @@ public class Menu {
 
         showRecycler(
                 2,
-                dataDialogMenuArrayList,
                 (item, view) -> {
 
                     if (item.getId() == NAVIGATION) {
@@ -496,41 +1197,15 @@ public class Menu {
 
     private void showIllegalOrganizations() {
 
-        menuTitle.setText(
-                "🔫 المنظمات غير الشرعية"
-        );
+        menuTitle.setText("🔫 المنظمات غير الشرعية");
 
         dataDialogMenuArrayList.clear();
 
-        addItem(
-                GANGS,
-                R.drawable.br_menu_menu,
-                "🏴 العصابات"
-        );
-
-        addItem(
-                MAFIA,
-                R.drawable.br_menu_menu,
-                "💀 المافيا"
-        );
-
-        addItem(
-                SECRET_ORGS,
-                R.drawable.br_menu_menu,
-                "🕶️ المنظمات السرية"
-        );
-
-        addItem(
-                GANG_WAREHOUSES,
-                R.drawable.br_menu_menu,
-                "📦 مخازن العصابات"
-        );
-
-        addItem(
-                WAR_ZONES,
-                R.drawable.br_menu_menu,
-                "🔥 مناطق الحروب"
-        );
+        addItem(GANGS, R.drawable.br_menu_menu, "🏴 العصابات");
+        addItem(MAFIA, R.drawable.br_menu_menu, "💀 المافيا");
+        addItem(SECRET_ORGS, R.drawable.br_menu_menu, "🕶️ المنظمات السرية");
+        addItem(GANG_WAREHOUSES, R.drawable.br_menu_menu, "📦 مخازن العصابات");
+        addItem(WAR_ZONES, R.drawable.br_menu_menu, "🔥 مناطق الحروب");
 
         addItem(
                 NAVIGATION,
@@ -540,19 +1215,13 @@ public class Menu {
 
         showRecycler(
                 2,
-                dataDialogMenuArrayList,
                 (item, view) -> {
 
                     if (item.getId() == GANGS) {
-
                         showGangs();
-
                     } else if (item.getId() == NAVIGATION) {
-
                         showNavigation();
-
                     } else {
-
                         sendServerAction(item.getId());
                     }
 
@@ -566,41 +1235,15 @@ public class Menu {
 
     private void showGangs() {
 
-        menuTitle.setText(
-                "🏴 العصابات"
-        );
+        menuTitle.setText("🏴 العصابات");
 
         dataDialogMenuArrayList.clear();
 
-        addItem(
-                VAGOS,
-                R.drawable.br_menu_menu,
-                "🟡 Vagos"
-        );
-
-        addItem(
-                BALLAS,
-                R.drawable.br_menu_menu,
-                "🟣 Ballas"
-        );
-
-        addItem(
-                FAMILIES,
-                R.drawable.br_menu_menu,
-                "🟢 Families"
-        );
-
-        addItem(
-                AZTECAS,
-                R.drawable.br_menu_menu,
-                "🔵 Aztecas"
-        );
-
-        addItem(
-                GROVE,
-                R.drawable.br_menu_menu,
-                "🟢 Grove Street"
-        );
+        addItem(VAGOS, R.drawable.br_menu_menu, "🟡 Vagos");
+        addItem(BALLAS, R.drawable.br_menu_menu, "🟣 Ballas");
+        addItem(FAMILIES, R.drawable.br_menu_menu, "🟢 Families");
+        addItem(AZTECAS, R.drawable.br_menu_menu, "🔵 Aztecas");
+        addItem(GROVE, R.drawable.br_menu_menu, "🟢 Grove Street");
 
         addItem(
                 ILLEGAL,
@@ -610,18 +1253,12 @@ public class Menu {
 
         showRecycler(
                 2,
-                dataDialogMenuArrayList,
                 (item, view) -> {
 
                     if (item.getId() == ILLEGAL) {
-
                         showIllegalOrganizations();
-
                     } else {
-
-                        showGangBase(
-                                item.getId()
-                        );
+                        showGangBase(item.getId());
                     }
 
                 }
@@ -632,9 +1269,7 @@ public class Menu {
     // مقر العصابة
     // =========================================================
 
-    private void showGangBase(
-            int gangId
-    ) {
+    private void showGangBase(int gangId) {
 
         String gangName;
 
@@ -672,25 +1307,25 @@ public class Menu {
         dataDialogMenuArrayList.clear();
 
         addItem(
-                700 + gangId,
+                2100 + gangId,
                 R.drawable.br_menu_compass,
                 "📍 تحديد مقر العصابة"
         );
 
         addItem(
-                800 + gangId,
+                2200 + gangId,
                 R.drawable.br_menu_menu,
                 "📋 معلومات العصابة"
         );
 
         addItem(
-                900 + gangId,
+                2300 + gangId,
                 R.drawable.br_menu_car,
                 "🚗 مركبات العصابة"
         );
 
         addItem(
-                1000 + gangId,
+                2400 + gangId,
                 R.drawable.br_menu_bag,
                 "📦 مخزن العصابة"
         );
@@ -703,18 +1338,12 @@ public class Menu {
 
         showRecycler(
                 2,
-                dataDialogMenuArrayList,
                 (item, view) -> {
 
                     if (item.getId() == GANGS) {
-
                         showGangs();
-
                     } else {
-
-                        sendServerAction(
-                                item.getId()
-                        );
+                        sendServerAction(item.getId());
                     }
 
                 }
@@ -722,100 +1351,29 @@ public class Menu {
     }
 
     // =========================================================
-    // الأماكن والمواقع
+    // الأماكن
     // =========================================================
 
     private void showLocations() {
 
-        menuTitle.setText(
-                "📍 الأماكن والمواقع"
-        );
+        menuTitle.setText("📍 الأماكن والمواقع");
 
         dataDialogMenuArrayList.clear();
 
-        addItem(
-                BANKS,
-                R.drawable.br_menu_menu,
-                "🏦 البنوك"
-        );
-
-        addItem(
-                STORES,
-                R.drawable.br_menu_menu,
-                "🏪 المتاجر"
-        );
-
-        addItem(
-                HOSPITALS,
-                R.drawable.br_menu_menu,
-                "🏥 المستشفيات"
-        );
-
-        addItem(
-                GAS_STATIONS,
-                R.drawable.br_menu_menu,
-                "⛽ محطات الوقود"
-        );
-
-        addItem(
-                CLOTHING,
-                R.drawable.br_menu_menu,
-                "👕 محلات الملابس"
-        );
-
-        addItem(
-                WEAPON_SHOPS,
-                R.drawable.br_menu_menu,
-                "🔫 متاجر الأسلحة"
-        );
-
-        addItem(
-                CASINO,
-                R.drawable.br_menu_menu,
-                "🎰 الكازينو"
-        );
-
-        addItem(
-                AIRPORT,
-                R.drawable.br_menu_menu,
-                "✈️ المطار"
-        );
-
-        addItem(
-                PORT,
-                R.drawable.br_menu_menu,
-                "🚢 الميناء"
-        );
-
-        addItem(
-                POLICE_STATION,
-                R.drawable.br_menu_menu,
-                "👮 مراكز الشرطة"
-        );
-
-        addItem(
-                MECHANIC_SHOPS,
-                R.drawable.br_menu_menu,
-                "🔧 ورش الميكانيكي"
-        );
-
-        addItem(
-                RESTAURANTS,
-                R.drawable.br_menu_menu,
-                "🍔 المطاعم"
-        );
-
-        addItem(
-                BARBERS,
-                R.drawable.br_menu_menu,
-                "💈 الحلاق"
-        );
-
-        addItem(
-                ATM,
-                R.drawable.br_menu_menu,
-                "💳 أجهزة الصراف"
-        );
+        addItem(BANKS, R.drawable.br_menu_menu, "🏦 البنوك");
+        addItem(STORES, R.drawable.br_menu_menu, "🏪 المتاجر");
+        addItem(HOSPITALS, R.drawable.br_menu_menu, "🏥 المستشفيات");
+        addItem(GAS_STATIONS, R.drawable.br_menu_menu, "⛽ محطات الوقود");
+        addItem(CLOTHING, R.drawable.br_menu_menu, "👕 محلات الملابس");
+        addItem(WEAPON_SHOPS, R.drawable.br_menu_menu, "🔫 متاجر الأسلحة");
+        addItem(CASINO, R.drawable.br_menu_menu, "🎰 الكازينو");
+        addItem(AIRPORT, R.drawable.br_menu_menu, "✈️ المطار");
+        addItem(PORT, R.drawable.br_menu_menu, "🚢 الميناء");
+        addItem(POLICE_STATION, R.drawable.br_menu_menu, "👮 مراكز الشرطة");
+        addItem(MECHANIC_SHOPS, R.drawable.br_menu_menu, "🔧 ورش الميكانيكي");
+        addItem(RESTAURANTS, R.drawable.br_menu_menu, "🍔 المطاعم");
+        addItem(BARBERS, R.drawable.br_menu_menu, "💈 الحلاق");
+        addItem(ATM, R.drawable.br_menu_menu, "💳 أجهزة الصراف");
 
         addItem(
                 NAVIGATION,
@@ -825,18 +1383,12 @@ public class Menu {
 
         showRecycler(
                 2,
-                dataDialogMenuArrayList,
                 (item, view) -> {
 
                     if (item.getId() == NAVIGATION) {
-
                         showNavigation();
-
                     } else {
-
-                        sendServerAction(
-                                item.getId()
-                        );
+                        sendServerAction(item.getId());
                     }
 
                 }
@@ -849,40 +1401,38 @@ public class Menu {
 
     private void showCarDealerships() {
 
-        menuTitle.setText(
-                "🚗 معارض السيارات"
-        );
+        menuTitle.setText("🚗 معارض السيارات");
 
         dataDialogMenuArrayList.clear();
 
         addItem(
-                CAR_DEALER_1,
+                3000,
                 R.drawable.br_menu_car,
                 "🚗 المعرض الرئيسي"
         );
 
         addItem(
-                CAR_DEALER_2,
+                3001,
                 R.drawable.br_menu_car,
-                "🏎️ معرض السيارات الرياضية"
+                "🏎️ السيارات الرياضية"
         );
 
         addItem(
-                CAR_DEALER_3,
+                3002,
                 R.drawable.br_menu_car,
-                "🚙 معرض السيارات الفاخرة"
+                "🚙 السيارات الفاخرة"
         );
 
         addItem(
-                CAR_DEALER_4,
+                3003,
                 R.drawable.br_menu_car,
-                "🚘 معرض السيارات العائلية"
+                "🚘 السيارات العائلية"
         );
 
         addItem(
-                CAR_DEALER_5,
+                3004,
                 R.drawable.br_menu_car,
-                "🚐 معرض المركبات التجارية"
+                "🚐 المركبات التجارية"
         );
 
         addItem(
@@ -893,18 +1443,12 @@ public class Menu {
 
         showRecycler(
                 2,
-                dataDialogMenuArrayList,
                 (item, view) -> {
 
                     if (item.getId() == NAVIGATION) {
-
                         showNavigation();
-
                     } else {
-
-                        sendServerAction(
-                                item.getId()
-                        );
+                        sendServerAction(item.getId());
                     }
 
                 }
@@ -917,28 +1461,26 @@ public class Menu {
 
     private void showBikeDealerships() {
 
-        menuTitle.setText(
-                "🏍️ معارض الدراجات"
-        );
+        menuTitle.setText("🏍️ معارض الدراجات");
 
         dataDialogMenuArrayList.clear();
 
         addItem(
-                BIKE_DEALER_1,
+                3100,
                 R.drawable.br_menu_car,
                 "🏍️ معرض الدراجات الرئيسي"
         );
 
         addItem(
-                BIKE_DEALER_2,
+                3101,
                 R.drawable.br_menu_car,
-                "🏁 معرض الدراجات الرياضية"
+                "🏁 الدراجات الرياضية"
         );
 
         addItem(
-                BIKE_DEALER_3,
+                3102,
                 R.drawable.br_menu_car,
-                "🛵 معرض الدراجات المدنية"
+                "🛵 الدراجات المدنية"
         );
 
         addItem(
@@ -949,18 +1491,12 @@ public class Menu {
 
         showRecycler(
                 2,
-                dataDialogMenuArrayList,
                 (item, view) -> {
 
                     if (item.getId() == NAVIGATION) {
-
                         showNavigation();
-
                     } else {
-
-                        sendServerAction(
-                                item.getId()
-                        );
+                        sendServerAction(item.getId());
                     }
 
                 }
@@ -968,7 +1504,7 @@ public class Menu {
     }
 
     // =========================================================
-    // إضافة عنصر للقائمة
+    // إضافة عنصر
     // =========================================================
 
     private void addItem(
@@ -987,35 +1523,11 @@ public class Menu {
     }
 
     // =========================================================
-    // إرسال الأمر للسيرفر
-    // =========================================================
-
-    private void sendServerAction(
-            int id
-    ) {
-
-        try {
-
-            NvEventQueueActivity.getInstance().sendRPC(
-                    1,
-                    String.valueOf(id)
-                            .getBytes("windows-1251"),
-                    id
-            );
-
-        } catch (UnsupportedEncodingException e) {
-
-            e.printStackTrace();
-        }
-    }
-
-    // =========================================================
     // RecyclerView
     // =========================================================
 
     private void showRecycler(
             int columns,
-            ArrayList<DataDialogMenu> arrayList,
             DialogMenuAdapter.OnUserClickListener listener
     ) {
 
@@ -1026,7 +1538,7 @@ public class Menu {
 
         DialogMenuAdapter adapter =
                 new DialogMenuAdapter(
-                        arrayList,
+                        dataDialogMenuArrayList,
                         listener
                 );
 
@@ -1081,13 +1593,32 @@ public class Menu {
                 }
         );
 
-        recyclerView.setAdapter(
-                adapter
-        );
+        recyclerView.setAdapter(adapter);
     }
 
     // =========================================================
-    // إغلاق القائمة
+    // إرسال للسيرفر
+    // =========================================================
+
+    private void sendServerAction(int id) {
+
+        try {
+
+            NvEventQueueActivity.getInstance().sendRPC(
+                    1,
+                    String.valueOf(id)
+                            .getBytes("windows-1251"),
+                    id
+            );
+
+        } catch (UnsupportedEncodingException e) {
+
+            e.printStackTrace();
+        }
+    }
+
+    // =========================================================
+    // إغلاق
     // =========================================================
 
     public void close() {
@@ -1101,4 +1632,4 @@ public class Menu {
                 .getInstance()
                 .togglePlayer(0);
     }
-}
+            }
