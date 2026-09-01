@@ -12,11 +12,12 @@ const dirCache = './../../distributions/cache';
 const dirCacheSnow = './../../distributions/cache_snow';
 const dirLauncher = './../../distributions/launcher';
 
-const projectName = 'Touch Mobile';
+const projectName = 'NAVARA ROLEPLAY';
 const packageName = 'com.touch.mobile.dark';
 
-const cdnCache = 'https://game.touch-rp.com/mobile/cache';
-const cdnLauncher = 'https://game.touch-rp.com/mobile/launcher';
+const cdnCache = 'https://game.navara-rp.com/mobile/cache';
+const cdnLauncher = 'https://game.navara-rp.com/mobile/launcher';
+
 
 const appVersion = '0.0.39';
 const rss = 'https://touch-rp.com/api/launcer/news';
