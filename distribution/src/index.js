@@ -20,7 +20,7 @@ const cdnLauncher = 'https://game.navara-rp.com/mobile/launcher';
 
 
 const appVersion = '1.0.0';
-const rss = 'https://touch-rp.com/api/launcer/news';
+const rss = '';
 
 const filesContinue = ['settings.ini', 'gta_sa.set', 'svconfig.ini'];
 const filesIgnore = ['samp_log.txt', 'crash_log.log', 'gtasatelem.set'];
@@ -163,131 +163,19 @@ return new Promise(async () => {
 				cdnLauncher,
 				filesContinue,
 				launcher: clientCache,
-				servers: [
-					{
-						id: 1,
-						show: true,
-						version: '1.0',
-						icon: 'https://game.touch-rp.com/mobile/image/pro_icon.jpeg',
-						events: [
-							{
-								title: 'Акция x2',
-								style: 'red',
-							},
-							{
-								title: 'Контейнеры',
-								style: 'blue',
-							},
-						],
-						slot: 100,
-						bonus: true,
-						name: 'PRO - Server',
-						description: 'SA-MP Mobile',
-						address: '176.32.39.214:7777',
-						sampVersion: '0.3.7',
-					},
-					{
-						id: 100,
-						show: false,
-						version: '1.0',
-						icon: 'https://game.touch-rp.com/mobile/image/pro_icon.jpeg',
-						events: [
-							{
-								title: 'Акция x2',
-								style: 'red',
-							},
-							{
-								title: 'Контейнеры',
-								style: 'blue',
-							},
-						],
-						slot: 1000,
-						bonus: false,
-						name: 'Localhost',
-						description: 'SA-MP Mobile',
-						address: '127.0.0.1:7777',
-						sampVersion: '0.3.7',
-					},
-				],
-			},
-			null,
-			4
-		)
-	);
-
-	console.log('Distribution dir: ' + distributionGeneratePath);
-}).catch(error => {
-	console.log('Ошибка', error);
-});
-
-function unixTimeStamp(time) {
-	const date = new Date(time);
-	return Math.floor(date.getTime() / 1000);
-}
-
-function getGpu(file) {
-	switch (file) {
-		case 'txd.dxt.toc':
-		case 'txd.dxt.tmb':
-		case 'txd.dxt.dat':
-		case 'samp.dxt.toc':
-		case 'samp.dxt.tmb':
-		case 'samp.dxt.dat':
-		case 'mobile.dxt.toc':
-		case 'mobile.dxt.tmb':
-		case 'mobile.dxt.dat':
-		case 'gta3.dxt.dat':
-		case 'gta3.dxt.tmb':
-		case 'gta3.dxt.toc':
-		case 'gta_int.dxt.toc':
-		case 'gta_int.dxt.tmb':
-		case 'gta_int.dxt.dat':
-		case 'touch.dxt.toc':
-		case 'touch.dxt.tmb':
-		case 'touch.dxt.dat': {
-			return 'A';
-		}
-		case 'txd.etc.toc':
-		case 'txd.etc.tmb':
-		case 'txd.etc.dat':
-		case 'samp.etc.toc':
-		case 'samp.etc.tmb':
-		case 'samp.etc.dat':
-		case 'mobile.etc.toc':
-		case 'mobile.etc.tmb':
-		case 'mobile.etc.dat':
-		case 'gta3.etc.dat':
-		case 'gta3.etc.tmb':
-		case 'gta3.etc.toc':
-		case 'gta_int.etc.toc':
-		case 'gta_int.etc.tmb':
-		case 'gta_int.etc.dat':
-		case 'touch.etc.toc':
-		case 'touch.etc.tmb':
-		case 'touch.etc.dat': {
-			return 'M';
-		}
-		case 'txd.pvr.toc':
-		case 'txd.pvr.tmb':
-		case 'txd.pvr.dat':
-		case 'samp.pvr.toc':
-		case 'samp.pvr.tmb':
-		case 'samp.pvr.dat':
-		case 'mobile.pvr.toc':
-		case 'mobile.pvr.tmb':
-		case 'mobile.pvr.dat':
-		case 'gta3.pvr.dat':
-		case 'gta3.pvr.tmb':
-		case 'gta3.pvr.toc':
-		case 'gta_int.pvr.toc':
-		case 'gta_int.pvr.tmb':
-		case 'gta_int.pvr.dat':
-		case 'touch.pvr.toc':
-		case 'touch.pvr.tmb':
-		case 'touch.pvr.dat': {
-			return 'PT';
-		}
-		default:
-			return '';
-	}
-}
+				
+		servers: [
+	{
+		id: 1,
+		show: true,
+		version: '1.0',
+		icon: '',
+		events: [],
+		slot: 1000,
+		bonus: false,
+		name: 'NAVARA ROLEPLAY',
+		description: 'سيرفر رول بلاي عربي',
+		address: '',
+		sampVersion: '0.3.7',
+	},
+],			
