@@ -105,22 +105,23 @@ players: {
     marginTop: 8,
     textAlign: 'right',
   },
-
-  playButton: {
-    height: 58,
-    borderRadius: 16,
-    backgroundColor: '#35c759',
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginBottom: 16,
-  },
-
+playButton: {
+  height: 62,
+  borderRadius: 18,
+  backgroundColor: '#35c759',
+  justifyContent: 'center',
+  alignItems: 'center',
+  marginBottom: 16,
+  elevation: 6,
+  shadowOpacity: 0.25,
+  shadowRadius: 8,
+},
   playText: {
-    color: '#ffffff',
-    fontSize: 19,
-    fontWeight: '900',
-  },
-
+  color: '#ffffff',
+  fontSize: 20,
+  fontWeight: '900',
+  letterSpacing: 0.5,
+},
   news: {
     backgroundColor: '#202431',
     borderRadius: 16,
