@@ -35,15 +35,17 @@ export const GameScreen = React.memo(() => {
           </Text>
         </View>
 
-        <TouchableOpacity
+        
+                <TouchableOpacity
           style={styles.playButton}
           onPress={() => {
-  GtaSetupModule.startGame();
-}}
+            GtaSetupModule.startGame();
+          }}>
           <Text style={styles.playText}>
             دخول إلى NAVARA
           </Text>
-        </TouchableOpacity>
+        </TouchableOpacity>  
+          
 
         <View style={styles.news}>
           <Text style={styles.newsTitle}>
