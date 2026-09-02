@@ -74,7 +74,7 @@ export const NavigationRouter = React.memo(() => {
                 animationDuration: 350,
                 animation: 'flip',
               }}
-              initialRouteName={isModeType ? 'Initiation' : 'ModeScreen'}>
+              initialRouteName="Initiation"
               <Stack.Screen name="Main" component={TabBarNavigation} />
               <Stack.Screen name="Error" component={ErrorScreen} />
               <Stack.Screen name="Initiation" component={InitiationScreen} />
