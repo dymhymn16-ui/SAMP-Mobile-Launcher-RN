@@ -115,7 +115,7 @@ public class Menu {
     @SuppressLint("InflateParams")
     public Menu(Activity aactivity) {
 
-     = aactivity;
+     activity = aactivity;
 
         anim = AnimationUtils.loadAnimation(
                 aactivity,
