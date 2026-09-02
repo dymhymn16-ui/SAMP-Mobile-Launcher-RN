@@ -72,7 +72,7 @@ export const NavigationRouter = React.memo(() => {
                 gestureEnabled: false,
                 animationTypeForReplace: 'push',
                 animationDuration: 350,
-                animation: 'flip',
+                ,'animation: 'flip
               }}
               <"initialRouteName="Initiation
               <Stack.Screen name="Main" component={TabBarNavigation} />
