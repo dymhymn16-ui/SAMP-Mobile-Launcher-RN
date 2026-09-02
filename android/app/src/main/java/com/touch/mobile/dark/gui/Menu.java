@@ -761,37 +761,37 @@ public class Menu {
 
         addItem(
                 LICENSE_CAR,
-                R.drawable.br_menu_chat
+                R.drawable.br_menu_chat,
                 "🚗 رخصة قيادة سيارة"
         );
 
         addItem(
                 LICENSE_BIKE,
-                R.drawable.br_menu_chat
+                R.drawable.br_menu_chat,
                 "🏍️ رخصة دراجة"
         );
 
         addItem(
                 LICENSE_WEAPON,
-                R.drawable.br_menu_chat
+                R.drawable.br_menu_chat,
                 "🔫 رخصة سلاح"
         );
 
         addItem(
                 LICENSE_TRUCK,
-                R.drawable.br_menu_chat
+                R.drawable.br_menu_chat,
                 "🚚 رخصة شاحنة"
         );
 
         addItem(
                 LICENSE_AIRCRAFT,
-                R.drawable.br_menu_chat
+                R.drawable.br_menu_chat,
                 "✈️ رخصة طيران"
         );
 
         addItem(
                 LICENSE_BOAT,
-                R.drawable.br_menu_chat
+                R.drawable.br_menu_chat,
                 "🚤 رخصة قارب"
         );
 
@@ -845,7 +845,7 @@ public class Menu {
 
         addItem(
                 INVENTORY_DOCUMENTS,
-                R.drawable.br_menu_chat
+                R.drawable.br_menu_chat,
                 "🪪 الوثائق"
         );
 
