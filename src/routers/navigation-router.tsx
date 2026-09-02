@@ -65,16 +65,17 @@ export const NavigationRouter = React.memo(() => {
         <GestureHandlerRootView style={{ flex: 1 }}>
           <StatusBar translucent backgroundColor="transparent" />
           <BottomSheetModalProvider>
-            <Stack.Navigator
-              screenOptions={{
-                headerShown: false,
-                headerTransparent: true,
-                gestureEnabled: false,
-                animationTypeForReplace: 'push',
-                animationDuration: 350,
-                ,'animation: 'flip
-              }}
-              <"initialRouteName="Initiation
+            
+           <Stack.Navigator
+  screenOptions={{
+    headerShown: false,
+    headerTransparent: true,
+    gestureEnabled: false,
+    animationTypeForReplace: 'push',
+    animationDuration: 350,
+    animation: 'flip',
+  }}
+    <"initialRouteName="Initiation
               <Stack.Screen name="Main" component={TabBarNavigation} />
               <Stack.Screen name="Error" component={ErrorScreen} />
               <Stack.Screen name="Initiation" component={InitiationScreen} />
