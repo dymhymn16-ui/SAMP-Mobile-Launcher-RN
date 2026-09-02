@@ -14,13 +14,11 @@ import android.widget.TextView;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.nvidia.devtech.NvEventQueueActivity;
 import com.touch.mobile.dark.R;
 import com.touch.mobile.dark.gui.adapters.DialogMenuAdapter;
 import com.touch.mobile.dark.gui.models.DataDialogMenu;
 import com.touch.mobile.dark.gui.util.Utils;
 
-import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 
 public class Menu {
@@ -34,12 +32,6 @@ public class Menu {
 
     private final ArrayList<DataDialogMenu> dataDialogMenuArrayList =
             new ArrayList<>();
-
-    // =========================
-    // الأقسام الرئيسية
-    // =========================
-
-    private static final int MAIN_MENU = 0;
 
     private static final int CHARACTER = 1;
     private static final int NAVIGATION = 2;
@@ -55,72 +47,6 @@ public class Menu {
     private static final int SETTINGS = 12;
     private static final int GUIDE = 13;
 
-    // =========================
-    // الملاحة
-    // =========================
-
-    private static final int GOVERNMENT = 20;
-    private static final int ILLEGAL = 21;
-    private static final int DEALERSHIPS = 22;
-    private static final int BIKE_DEALERSHIPS = 23;
-    private static final int LOCATIONS = 24;
-
-    // =========================
-    // المنظمات الحكومية
-    // =========================
-
-    private static final int POLICE = 100;
-    private static final int AMBULANCE = 101;
-    private static final int FIRE_DEPARTMENT = 102;
-    private static final int MECHANIC = 103;
-    private static final int TAXI = 104;
-    private static final int COURT = 105;
-    private static final int GOVERNMENT_ORG = 106;
-    private static final int ARMY = 107;
-
-    // =========================
-    // المنظمات غير الشرعية
-    // =========================
-
-    private static final int GANGS = 200;
-    private static final int MAFIA = 201;
-    private static final int SECRET_ORGS = 202;
-    private static final int GANG_WAREHOUSES = 203;
-    private static final int WAR_ZONES = 204;
-
-    // =========================
-    // العصابات
-    // =========================
-
-    private static final int VAGOS = 300;
-    private static final int BALLAS = 301;
-    private static final int FAMILIES = 302;
-    private static final int AZTECAS = 303;
-    private static final int GROVE = 304;
-
-    // =========================
-    // الأماكن
-    // =========================
-
-    private static final int BANKS = 500;
-    private static final int STORES = 501;
-    private static final int HOSPITALS = 502;
-    private static final int GAS_STATIONS = 503;
-    private static final int CLOTHING = 504;
-    private static final int WEAPON_SHOPS = 505;
-    private static final int CASINO = 506;
-    private static final int AIRPORT = 507;
-    private static final int PORT = 508;
-    private static final int POLICE_STATION = 509;
-    private static final int MECHANIC_SHOPS = 510;
-    private static final int RESTAURANTS = 511;
-    private static final int BARBERS = 512;
-    private static final int ATM = 513;
-
-    // =========================
-    // الشخصية
-    // =========================
-
     private static final int CHARACTER_INFO = 1000;
     private static final int CHARACTER_STATS = 1001;
     private static final int CHARACTER_SKILLS = 1002;
@@ -129,10 +55,6 @@ public class Menu {
     private static final int CHARACTER_APPEARANCE = 1005;
     private static final int CHARACTER_STATUS = 1006;
 
-    // =========================
-    // المركبات
-    // =========================
-
     private static final int MY_VEHICLES = 1100;
     private static final int VEHICLE_SPAWN = 1101;
     private static final int VEHICLE_PARK = 1102;
@@ -140,19 +62,11 @@ public class Menu {
     private static final int VEHICLE_ENGINE = 1104;
     private static final int VEHICLE_INFO = 1105;
 
-    // =========================
-    // البنك
-    // =========================
-
     private static final int BANK_BALANCE = 1200;
     private static final int BANK_DEPOSIT = 1201;
     private static final int BANK_WITHDRAW = 1202;
     private static final int BANK_TRANSFER = 1203;
     private static final int BANK_TRANSACTIONS = 1204;
-
-    // =========================
-    // الوظائف
-    // =========================
 
     private static final int JOB_INFO = 1300;
     private static final int JOB_START = 1301;
@@ -160,18 +74,10 @@ public class Menu {
     private static final int JOB_SKILL = 1303;
     private static final int JOB_SALARY = 1304;
 
-    // =========================
-    // العقارات
-    // =========================
-
     private static final int MY_PROPERTIES = 1400;
     private static final int PROPERTY_INFO = 1401;
     private static final int PROPERTY_ENTER = 1402;
     private static final int PROPERTY_STORAGE = 1403;
-
-    // =========================
-    // الرخص
-    // =========================
 
     private static final int LICENSE_CAR = 1500;
     private static final int LICENSE_BIKE = 1501;
@@ -180,19 +86,11 @@ public class Menu {
     private static final int LICENSE_AIRCRAFT = 1504;
     private static final int LICENSE_BOAT = 1505;
 
-    // =========================
-    // الحقيبة
-    // =========================
-
     private static final int INVENTORY_ITEMS = 1600;
     private static final int INVENTORY_WEAPONS = 1601;
     private static final int INVENTORY_KEYS = 1602;
     private static final int INVENTORY_DOCUMENTS = 1603;
     private static final int INVENTORY_MATERIALS = 1604;
-
-    // =========================
-    // المهام
-    // =========================
 
     private static final int DAILY_MISSIONS = 1700;
     private static final int JOB_MISSIONS = 1701;
@@ -200,24 +98,24 @@ public class Menu {
     private static final int POLICE_MISSIONS = 1703;
     private static final int MISSION_REWARDS = 1704;
 
-    // =========================
-    // الإعدادات
-    // =========================
-
     private static final int SETTINGS_CHAT = 1800;
     private static final int SETTINGS_CONTROLS = 1801;
     private static final int SETTINGS_GRAPHICS = 1802;
     private static final int SETTINGS_SOUND = 1803;
     private static final int SETTINGS_INTERFACE = 1804;
 
-    // =========================
-    // الإنشاء
-    // =========================
+    private static final int GOVERNMENT = 2000;
+    private static final int ILLEGAL = 2001;
+    private static final int DEALERSHIPS = 2002;
+    private static final int BIKE_DEALERSHIPS = 2003;
+    private static final int LOCATIONS = 2004;
+
+    private static final int WAR_ZONES = 2100;
 
     @SuppressLint("InflateParams")
     public Menu(Activity aactivity) {
 
-        activity = aactivity;
+     = aactivity;
 
         anim = AnimationUtils.loadAnimation(
                 aactivity,
@@ -253,10 +151,6 @@ public class Menu {
         );
     }
 
-    // =========================
-    // فتح القائمة
-    // =========================
-
     public void ShowMenu() {
 
         showMainMenu();
@@ -267,129 +161,46 @@ public class Menu {
         );
     }
 
-    // =========================
-    // القائمة الرئيسية
-    // =========================
-
     private void showMainMenu() {
 
-        menuTitle = activity.findViewById(
-                R.id.br_menu_title
-        );
+        setTitle("☰ NAVARA ROLEPLAY");
 
-        if (menuTitle != null) {
-            menuTitle.setText("☰ NAVARA ROLEPLAY");
-        }
+        dataDialogMenuArrayList.clear();
 
-         dataDialogMenuArrayList.clear();
+        addMenuItem(CHARACTER, R.drawable.br_menu_chat, "👤 الشخصية");
+        addMenuItem(NAVIGATION, R.drawable.br_menu_compass, "🧭 الملاحة");
+        addMenuItem(VEHICLES, R.drawable.br_menu_car, "🚗 المركبات");
+        addMenuItem(FINANCE, R.drawable.br_menu_ruble, "💰 البنك والمالية");
+        addMenuItem(JOBS, R.drawable.br_menu_bag, "💼 الوظائف");
+        addMenuItem(PROPERTIES, R.drawable.br_menu_menu, "🏠 العقارات");
+        addMenuItem(LICENSES, R.drawable.br_menu_chat, "📜 الرخص");
+        addMenuItem(INVENTORY, R.drawable.br_menu_bag, "🎒 الحقيبة");
+        addMenuItem(MISSIONS, R.drawable.br_menu_compass, "🎯 المهام");
+        addMenuItem(CAPTURE, R.drawable.br_menu_car, "⚔️ السيطرة");
+        addMenuItem(COMMANDS, R.drawable.br_menu_menu, "📋 الأوامر");
+        addMenuItem(SETTINGS, R.drawable.br_menu_menu, "⚙️ الإعدادات");
+        addMenuItem(GUIDE, R.drawable.br_menu_chat, "📖 دليل NAVARA");
 
-        // القائمة الرئيسية
-        addMenuItem(
-                "👤 الشخصية",
-                CHARACTER,
-                R.drawable.br_menu_chat
-        );
-
-        addMenuItem(
-                "🧭 الملاحة",
-                NAVIGATION,
-                R.drawable.br_menu_compass
-        );
-
-        addMenuItem(
-                "🚗 المركبات",
-                VEHICLES,
-                R.drawable.br_menu_car
-        );
-
-        addMenuItem(
-                "💰 البنك والمالية",
-                FINANCE,
-                R.drawable.br_menu_ruble
-        );
-
-        addMenuItem(
-                "💼 الوظائف",
-                JOBS,
-                R.drawable.br_menu_bag
-        );
-
-        addMenuItem(
-                "🏠 العقارات",
-                PROPERTIES,
-                R.drawable.br_menu_menu
-        );
-
-        addMenuItem(
-                "📜 الرخص",
-                LICENSES,
-                R.drawable.br_menu_chat
-        );
-
-        addMenuItem(
-                "🎒 الحقيبة",
-                INVENTORY,
-                R.drawable.br_menu_bag
-        );
-
-        addMenuItem(
-                "🎯 المهام",
-                MISSIONS,
-                R.drawable.br_menu_compass
-        );
-
-        addMenuItem(
-                "⚔️ السيطرة",
-                CAPTURE,
-                R.drawable.br_menu_car
-        );
-
-        addMenuItem(
-                "📋 الأوامر",
-                COMMANDS,
-                R.drawable.br_menu_menu
-        );
-
-        addMenuItem(
-                "⚙️ الإعدادات",
-                SETTINGS,
-                R.drawable.br_menu_menu
-        );
-
-        addMenuItem(
-                "📖 دليل NAVARA",
-                GUIDE,
-                R.drawable.br_menu_chat
-        );
-
-        showRecycler(2, this::mainMenuClick);
+        showRecycler(this::menuClick);
     }
 
-    // =========================
-    // إضافة عنصر للقائمة
-    // =========================
-
     private void addMenuItem(
-            String title,
             int id,
-            int icon
+            int icon,
+            String title
     ) {
         dataDialogMenuArrayList.add(
                 new DataDialogMenu(
-                        title,
+                        id,
                         icon,
-                        id
+                        title
                 )
         );
     }
 
-    // =========================
-    // الضغط على القائمة الرئيسية
-    // =========================
-
-    private void mainMenuClick(
-            int position,
-            DataDialogMenu item
+    private void menuClick(
+            DataDialogMenu item,
+            View view
     ) {
 
         switch (item.getId()) {
@@ -445,236 +256,212 @@ public class Menu {
             case GUIDE:
                 showGuideMenu();
                 break;
+
+            default:
+                showSectionMessage(item.getNameButton());
+                break;
         }
     }
-
-    // =========================
-    // الشخصية
-    // =========================
 
     private void showCharacterMenu() {
 
         prepareSubMenu("👤 الشخصية");
 
-        addMenuItem("📋 معلومات الشخصية", CHARACTER_INFO, R.drawable.br_menu_chat);
-        addMenuItem("📊 الإحصائيات", CHARACTER_STATS, R.drawable.br_menu_ruble);
-        addMenuItem("⭐ المهارات", CHARACTER_SKILLS, R.drawable.br_menu_compass);
-        addMenuItem("🏆 الإنجازات", CHARACTER_ACHIEVEMENTS, R.drawable.br_menu_menu);
-        addMenuItem("⚠️ التحذيرات", CHARACTER_WARNINGS, R.drawable.br_menu_chat);
-        addMenuItem("👕 المظهر", CHARACTER_APPEARANCE, R.drawable.br_menu_bag);
-        addMenuItem("❤️ الحالة", CHARACTER_STATUS, R.drawable.br_menu_chat);
+        addMenuItem(CHARACTER_INFO, R.drawable.br_menu_chat, "📋 معلومات الشخصية");
+        addMenuItem(CHARACTER_STATS, R.drawable.br_menu_ruble, "📊 الإحصائيات");
+        addMenuItem(CHARACTER_SKILLS, R.drawable.br_menu_compass, "⭐ المهارات");
+        addMenuItem(CHARACTER_ACHIEVEMENTS, R.drawable.br_menu_menu, "🏆 الإنجازات");
+        addMenuItem(CHARACTER_WARNINGS, R.drawable.br_menu_chat, "⚠️ التحذيرات");
+        addMenuItem(CHARACTER_APPEARANCE, R.drawable.br_menu_bag, "👕 المظهر");
+        addMenuItem(CHARACTER_STATUS, R.drawable.br_menu_chat, "❤️ الحالة");
 
-        showRecycler(2, this::subMenuClick);
+        showRecycler(this::subMenuClick);
     }
-
-    // =========================
-    // الملاحة
-    // =========================
 
     private void showNavigationMenu() {
 
         prepareSubMenu("🧭 الملاحة");
 
-        addMenuItem("🏛️ حكومي", GOVERNMENT, R.drawable.br_menu_menu);
-        addMenuItem("🔫 غير شرعي", ILLEGAL, R.drawable.br_menu_car);
-        addMenuItem("🚘 معارض السيارات", DEALERSHIPS, R.drawable.br_menu_car);
-        addMenuItem("🏍️ معارض الدراجات", BIKE_DEALERSHIPS, R.drawable.br_menu_car);
-        addMenuItem("📍 جميع المواقع", LOCATIONS, R.drawable.br_menu_compass);
+        addMenuItem(GOVERNMENT, R.drawable.br_menu_menu, "🏛️ حكومي");
+        addMenuItem(ILLEGAL, R.drawable.br_menu_car, "🔫 غير شرعي");
+        addMenuItem(DEALERSHIPS, R.drawable.br_menu_car, "🚘 معارض السيارات");
+        addMenuItem(BIKE_DEALERSHIPS, R.drawable.br_menu_car, "🏍️ معارض الدراجات");
+        addMenuItem(LOCATIONS, R.drawable.br_menu_compass, "📍 جميع المواقع");
 
-        showRecycler(2, this::subMenuClick);
+        showRecycler(this::subMenuClick);
     }
-
-    // =========================
-    // المركبات
-    // =========================
 
     private void showVehiclesMenu() {
 
         prepareSubMenu("🚗 المركبات");
 
-        addMenuItem("🚘 مركباتي", MY_VEHICLES, R.drawable.br_menu_car);
-        addMenuItem("📍 استدعاء المركبة", VEHICLE_SPAWN, R.drawable.br_menu_compass);
-        addMenuItem("🅿️ إيقاف المركبة", VEHICLE_PARK, R.drawable.br_menu_car);
-        addMenuItem("🔒 قفل المركبة", VEHICLE_LOCK, R.drawable.br_menu_chat);
-        addMenuItem("🔑 تشغيل المحرك", VEHICLE_ENGINE, R.drawable.br_menu_car);
-        addMenuItem("ℹ️ معلومات المركبة", VEHICLE_INFO, R.drawable.br_menu_menu);
+        addMenuItem(MY_VEHICLES, R.drawable.br_menu_car, "🚘 مركباتي");
+        addMenuItem(VEHICLE_SPAWN, R.drawable.br_menu_compass, "📍 استدعاء المركبة");
+        addMenuItem(VEHICLE_PARK, R.drawable.br_menu_car, "🅿️ إيقاف المركبة");
+        addMenuItem(VEHICLE_LOCK, R.drawable.br_menu_chat, "🔒 قفل المركبة");
+        addMenuItem(VEHICLE_ENGINE, R.drawable.br_menu_car, "🔑 تشغيل المحرك");
+        addMenuItem(VEHICLE_INFO, R.drawable.br_menu_menu, "ℹ️ معلومات المركبة");
 
-        showRecycler(2, this::subMenuClick);
+        showRecycler(this::subMenuClick);
     }
-
-    // =========================
-    // البنك
-    // =========================
 
     private void showFinanceMenu() {
 
         prepareSubMenu("💰 البنك والمالية");
 
-        addMenuItem("💵 الرصيد", BANK_BALANCE, R.drawable.br_menu_ruble);
-        addMenuItem("🏦 إيداع", BANK_DEPOSIT, R.drawable.br_menu_ruble);
-        addMenuItem("💸 سحب", BANK_WITHDRAW, R.drawable.br_menu_ruble);
-        addMenuItem("🔄 تحويل", BANK_TRANSFER, R.drawable.br_menu_ruble);
-        addMenuItem("📜 العمليات المالية", BANK_TRANSACTIONS, R.drawable.br_menu_chat);
+        addMenuItem(BANK_BALANCE, R.drawable.br_menu_ruble, "💵 الرصيد");
+        addMenuItem(BANK_DEPOSIT, R.drawable.br_menu_ruble, "🏦 إيداع");
+        addMenuItem(BANK_WITHDRAW, R.drawable.br_menu_ruble, "💸 سحب");
+        addMenuItem(BANK_TRANSFER, R.drawable.br_menu_ruble, "🔄 تحويل");
+        addMenuItem(BANK_TRANSACTIONS, R.drawable.br_menu_chat, "📜 العمليات المالية");
 
-        showRecycler(2, this::subMenuClick);
+        showRecycler(this::subMenuClick);
     }
-
-    // =========================
-    // الوظائف
-    // =========================
 
     private void showJobsMenu() {
 
         prepareSubMenu("💼 الوظائف");
 
-        addMenuItem("ℹ️ معلومات الوظيفة", JOB_INFO, R.drawable.br_menu_chat);
-        addMenuItem("▶️ بدء العمل", JOB_START, R.drawable.br_menu_car);
-        addMenuItem("⏹️ إيقاف العمل", JOB_STOP, R.drawable.br_menu_car);
-        addMenuItem("📈 مهارة الوظيفة", JOB_SKILL, R.drawable.br_menu_compass);
-        addMenuItem("💵 الراتب", JOB_SALARY, R.drawable.br_menu_ruble);
+        addMenuItem(JOB_INFO, R.drawable.br_menu_chat, "ℹ️ معلومات الوظيفة");
+        addMenuItem(JOB_START, R.drawable.br_menu_car, "▶️ بدء العمل");
+        addMenuItem(JOB_STOP, R.drawable.br_menu_car, "⏹️ إيقاف العمل");
+        addMenuItem(JOB_SKILL, R.drawable.br_menu_compass, "📈 مهارة الوظيفة");
+        addMenuItem(JOB_SALARY, R.drawable.br_menu_ruble, "💵 الراتب");
 
-        showRecycler(2, this::subMenuClick);
+        showRecycler(this::subMenuClick);
     }
-
-    // =========================
-    // العقارات
-    // =========================
 
     private void showPropertiesMenu() {
 
         prepareSubMenu("🏠 العقارات");
 
-        addMenuItem("🏠 عقاراتي", MY_PROPERTIES, R.drawable.br_menu_menu);
-        addMenuItem("ℹ️ معلومات العقار", PROPERTY_INFO, R.drawable.br_menu_chat);
-        addMenuItem("🚪 دخول العقار", PROPERTY_ENTER, R.drawable.br_menu_menu);
-        addMenuItem("📦 مخزن العقار", PROPERTY_STORAGE, R.drawable.br_menu_bag);
+        addMenuItem(MY_PROPERTIES, R.drawable.br_menu_menu, "🏠 عقاراتي");
+        addMenuItem(PROPERTY_INFO, R.drawable.br_menu_chat, "ℹ️ معلومات العقار");
+        addMenuItem(PROPERTY_ENTER, R.drawable.br_menu_menu, "🚪 دخول العقار");
+        addMenuItem(PROPERTY_STORAGE, R.drawable.br_menu_bag, "📦 مخزن العقار");
 
-        showRecycler(2, this::subMenuClick);
+        showRecycler(this::subMenuClick);
     }
-
-    // =========================
-    // الرخص
-    // =========================
 
     private void showLicensesMenu() {
 
         prepareSubMenu("📜 الرخص");
 
-        addMenuItem("🚗 رخصة سيارة", LICENSE_CAR, R.drawable.br_menu_car);
-        addMenuItem("🏍️ رخصة دراجة", LICENSE_BIKE, R.drawable.br_menu_car);
-        addMenuItem("🔫 رخصة سلاح", LICENSE_WEAPON, R.drawable.br_menu_car);
-        addMenuItem("🚛 رخصة شاحنة", LICENSE_TRUCK, R.drawable.br_menu_car);
-        addMenuItem("✈️ رخصة طائرة", LICENSE_AIRCRAFT, R.drawable.br_menu_car);
-        addMenuItem("🚤 رخصة قارب", LICENSE_BOAT, R.drawable.br_menu_car);
+        addMenuItem(LICENSE_CAR, R.drawable.br_menu_car, "🚗 رخصة سيارة");
+        addMenuItem(LICENSE_BIKE, R.drawable.br_menu_car, "🏍️ رخصة دراجة");
+        addMenuItem(LICENSE_WEAPON, R.drawable.br_menu_car, "🔫 رخصة سلاح");
+        addMenuItem(LICENSE_TRUCK, R.drawable.br_menu_car, "🚛 رخصة شاحنة");
+        addMenuItem(LICENSE_AIRCRAFT, R.drawable.br_menu_car, "✈️ رخصة طائرة");
+        addMenuItem(LICENSE_BOAT, R.drawable.br_menu_car, "🚤 رخصة قارب");
 
-        showRecycler(2, this::subMenuClick);
+        showRecycler(this::subMenuClick);
     }
-
-    // =========================
-    // الحقيبة
-    // =========================
 
     private void showInventoryMenu() {
 
         prepareSubMenu("🎒 الحقيبة");
 
-        addMenuItem("📦 الأدوات", INVENTORY_ITEMS, R.drawable.br_menu_bag);
-        addMenuItem("🔫 الأسلحة", INVENTORY_WEAPONS, R.drawable.br_menu_car);
-        addMenuItem("🔑 المفاتيح", INVENTORY_KEYS, R.drawable.br_menu_chat);
-        addMenuItem("📄 المستندات", INVENTORY_DOCUMENTS, R.drawable.br_menu_chat);
-        addMenuItem("🧱 المواد", INVENTORY_MATERIALS, R.drawable.br_menu_bag);
+        addMenuItem(INVENTORY_ITEMS, R.drawable.br_menu_bag, "📦 الأدوات");
+        addMenuItem(INVENTORY_WEAPONS, R.drawable.br_menu_car, "🔫 الأسلحة");
+        addMenuItem(INVENTORY_KEYS, R.drawable.br_menu_chat, "🔑 المفاتيح");
+        addMenuItem(INVENTORY_DOCUMENTS, R.drawable.br_menu_chat, "📄 المستندات");
+        addMenuItem(INVENTORY_MATERIALS, R.drawable.br_menu_bag, "🧱 المواد");
 
-        showRecycler(2, this::subMenuClick);
+        showRecycler(this::subMenuClick);
     }
-
-    // =========================
-    // المهام
-    // =========================
 
     private void showMissionsMenu() {
 
         prepareSubMenu("🎯 المهام");
 
-        addMenuItem("📅 المهام اليومية", DAILY_MISSIONS, R.drawable.br_menu_compass);
-        addMenuItem("💼 مهام الوظائف", JOB_MISSIONS, R.drawable.br_menu_bag);
-        addMenuItem("🔫 مهام العصابات", GANG_MISSIONS, R.drawable.br_menu_car);
-        addMenuItem("👮 مهام الشرطة", POLICE_MISSIONS, R.drawable.br_menu_car);
-        addMenuItem("🎁 مكافآت المهام", MISSION_REWARDS, R.drawable.br_menu_ruble);
+        addMenuItem(DAILY_MISSIONS, R.drawable.br_menu_compass, "📅 المهام اليومية");
+        addMenuItem(JOB_MISSIONS, R.drawable.br_menu_bag, "💼 مهام الوظائف");
+        addMenuItem(GANG_MISSIONS, R.drawable.br_menu_car, "🔫 مهام العصابات");
+        addMenuItem(POLICE_MISSIONS, R.drawable.br_menu_car, "👮 مهام الشرطة");
+        addMenuItem(MISSION_REWARDS, R.drawable.br_menu_ruble, "🎁 مكافآت المهام");
 
-        showRecycler(2, this::subMenuClick);
+        showRecycler(this::subMenuClick);
     }
-
-    // =========================
-    // السيطرة
-    // =========================
 
     private void showCaptureMenu() {
 
         prepareSubMenu("⚔️ السيطرة");
 
-        addMenuItem("🗺️ مناطق السيطرة", CAPTURE, R.drawable.br_menu_compass);
-        addMenuItem("⚔️ مناطق الحرب", WAR_ZONES, R.drawable.br_menu_car);
+        addMenuItem(CAPTURE, R.drawable.br_menu_compass, "🗺️ مناطق السيطرة");
+        addMenuItem(WAR_ZONES, R.drawable.br_menu_car, "⚔️ مناطق الحرب");
 
-        showRecycler(2, this::subMenuClick);
+        showRecycler(this::subMenuClick);
     }
-
-    // =========================
-    // الأوامر
-    // =========================
 
     private void showCommandsMenu() {
 
         prepareSubMenu("📋 الأوامر");
 
-        addMenuItem("👤 أوامر الشخصية", CHARACTER, R.drawable.br_menu_chat);
-        addMenuItem("🚗 أوامر المركبات", VEHICLES, R.drawable.br_menu_car);
-        addMenuItem("💰 أوامر البنك", FINANCE, R.drawable.br_menu_ruble);
-        addMenuItem("💼 أوامر الوظائف", JOBS, R.drawable.br_menu_bag);
-        addMenuItem("🎒 أوامر الحقيبة", INVENTORY, R.drawable.br_menu_bag);
-        addMenuItem("🎯 أوامر المهام", MISSIONS, R.drawable.br_menu_compass);
+        addMenuItem(CHARACTER, R.drawable.br_menu_chat, "👤 أوامر الشخصية");
+        addMenuItem(VEHICLES, R.drawable.br_menu_car, "🚗 أوامر المركبات");
+        addMenuItem(FINANCE, R.drawable.br_menu_ruble, "💰 أوامر البنك");
+        addMenuItem(JOBS, R.drawable.br_menu_bag, "💼 أوامر الوظائف");
+        addMenuItem(INVENTORY, R.drawable.br_menu_bag, "🎒 أوامر الحقيبة");
+        addMenuItem(MISSIONS, R.drawable.br_menu_compass, "🎯 أوامر المهام");
 
-        showRecycler(2, this::subMenuClick);
+        showRecycler(this::subMenuClick);
     }
-
-    // =========================
-    // الإعدادات
-    // =========================
 
     private void showSettingsMenu() {
 
         prepareSubMenu("⚙️ الإعدادات");
 
-        addMenuItem("💬 إعدادات الشات", SETTINGS_CHAT, R.drawable.br_menu_chat);
-        addMenuItem("🎮 التحكم", SETTINGS_CONTROLS, R.drawable.br_menu_menu);
-        addMenuItem("🎨 الرسومات", SETTINGS_GRAPHICS, R.drawable.br_menu_compass);
-        addMenuItem("🔊 الصوت", SETTINGS_SOUND, R.drawable.br_menu_chat);
-        addMenuItem("🖥️ الواجهة", SETTINGS_INTERFACE, R.drawable.br_menu_menu);
+        addMenuItem(SETTINGS_CHAT, R.drawable.br_menu_chat, "💬 إعدادات الشات");
+        addMenuItem(SETTINGS_CONTROLS, R.drawable.br_menu_menu, "🎮 التحكم");
+        addMenuItem(SETTINGS_GRAPHICS, R.drawable.br_menu_compass, "🎨 الرسومات");
+        addMenuItem(SETTINGS_SOUND, R.drawable.br_menu_chat, "🔊 الصوت");
+        addMenuItem(SETTINGS_INTERFACE, R.drawable.br_menu_menu, "🖥️ الواجهة");
 
-        showRecycler(2, this::subMenuClick);
+        showRecycler(this::subMenuClick);
     }
-
-    // =========================
-    // الدليل
-    // =========================
 
     private void showGuideMenu() {
 
         prepareSubMenu("📖 دليل NAVARA");
 
-        addMenuItem("👤 دليل الشخصية", CHARACTER, R.drawable.br_menu_chat);
-        addMenuItem("🚗 دليل المركبات", VEHICLES, R.drawable.br_menu_car);
-        addMenuItem("💰 دليل البنك", FINANCE, R.drawable.br_menu_ruble);
-        addMenuItem("🏠 دليل العقارات", PROPERTIES, R.drawable.br_menu_menu);
-        addMenuItem("🎯 دليل المهام", MISSIONS, R.drawable.br_menu_compass);
+        addMenuItem(CHARACTER, R.drawable.br_menu_chat, "👤 دليل الشخصية");
+        addMenuItem(VEHICLES, R.drawable.br_menu_car, "🚗 دليل المركبات");
+        addMenuItem(FINANCE, R.drawable.br_menu_ruble, "💰 دليل البنك");
+        addMenuItem(PROPERTIES, R.drawable.br_menu_menu, "🏠 دليل العقارات");
+        addMenuItem(MISSIONS, R.drawable.br_menu_compass, "🎯 دليل المهام");
 
-        showRecycler(2, this::subMenuClick);
+        showRecycler(this::subMenuClick);
     }
 
-    // =========================
-    // تجهيز القائمة الفرعية
-    // =========================
-
     private void prepareSubMenu(String title) {
+
+        setTitle(title);
+
+        dataDialogMenuArrayList.clear();
+    }
+
+    private void subMenuClick(
+            DataDialogMenu item,
+            View view
+    ) {
+
+        setTitle(item.getNameButton());
+
+        // هنا ماكو رسالة "سيتم فتح النظام قريباً"
+        // وإنما يثبت اسم القسم الذي ضغطت عليه.
+    }
+
+    private void showSectionMessage(String title) {
+
+        setTitle(title);
+
+        new Handler().postDelayed(
+                () -> setTitle("☰ NAVARA ROLEPLAY"),
+                1500
+        );
+    }
+
+    private void setTitle(String title) {
 
         menuTitle = activity.findViewById(
                 R.id.br_menu_title
@@ -683,138 +470,15 @@ public class Menu {
         if (menuTitle != null) {
             menuTitle.setText(title);
         }
-
-        dataDialogMenuArrayList.clear();
     }
-
-    // =========================
-    // ضغط القائمة الفرعية
-    // =========================
-
-    private void subMenuClick(
-            int position,
-            DataDialogMenu item
-    ) {
-
-        switch (item.getId()) {
-
-            // الشخصية
-            case CHARACTER_INFO:
-            case CHARACTER_STATS:
-            case CHARACTER_SKILLS:
-            case CHARACTER_ACHIEVEMENTS:
-            case CHARACTER_WARNINGS:
-            case CHARACTER_APPEARANCE:
-            case CHARACTER_STATUS:
-                showMessage("👤 سيتم فتح قسم الشخصية قريباً.");
-                break;
-
-            // المركبات
-            case MY_VEHICLES:
-            case VEHICLE_SPAWN:
-            case VEHICLE_PARK:
-            case VEHICLE_LOCK:
-            case VEHICLE_ENGINE:
-            case VEHICLE_INFO:
-                showMessage("🚗 سيتم فتح نظام المركبات قريباً.");
-                break;
-
-            // البنك
-            case BANK_BALANCE:
-            case BANK_DEPOSIT:
-            case BANK_WITHDRAW:
-            case BANK_TRANSFER:
-            case BANK_TRANSACTIONS:
-                showMessage("💰 سيتم فتح نظام البنك قريباً.");
-                break;
-
-            // الوظائف
-            case JOB_INFO:
-            case JOB_START:
-            case JOB_STOP:
-            case JOB_SKILL:
-            case JOB_SALARY:
-                showMessage("💼 سيتم فتح نظام الوظائف قريباً.");
-                break;
-
-            // العقارات
-            case MY_PROPERTIES:
-            case PROPERTY_INFO:
-            case PROPERTY_ENTER:
-            case PROPERTY_STORAGE:
-                showMessage("🏠 سيتم فتح نظام العقارات قريباً.");
-                break;
-
-            // الرخص
-            case LICENSE_CAR:
-            case LICENSE_BIKE:
-            case LICENSE_WEAPON:
-            case LICENSE_TRUCK:
-            case LICENSE_AIRCRAFT:
-            case LICENSE_BOAT:
-                showMessage("📜 سيتم فتح نظام الرخص قريباً.");
-                break;
-
-            // الحقيبة
-            case INVENTORY_ITEMS:
-            case INVENTORY_WEAPONS:
-            case INVENTORY_KEYS:
-            case INVENTORY_DOCUMENTS:
-            case INVENTORY_MATERIALS:
-                showMessage("🎒 سيتم فتح الحقيبة قريباً.");
-                break;
-
-            // المهام
-            case DAILY_MISSIONS:
-            case JOB_MISSIONS:
-            case GANG_MISSIONS:
-            case POLICE_MISSIONS:
-            case MISSION_REWARDS:
-                showMessage("🎯 سيتم فتح نظام المهام قريباً.");
-                break;
-
-            // الإعدادات
-            case SETTINGS_CHAT:
-            case SETTINGS_CONTROLS:
-            case SETTINGS_GRAPHICS:
-            case SETTINGS_SOUND:
-            case SETTINGS_INTERFACE:
-                showMessage("⚙️ سيتم فتح الإعدادات قريباً.");
-                break;
-
-            // الملاحة
-            case GOVERNMENT:
-            case ILLEGAL:
-            case DEALERSHIPS:
-            case BIKE_DEALERSHIPS:
-            case LOCATIONS:
-                showMessage("🧭 سيتم فتح نظام الملاحة قريباً.");
-                break;
-
-            // السيطرة
-            case CAPTURE:
-            case WAR_ZONES:
-                showMessage("⚔️ سيتم فتح نظام السيطرة والحروب قريباً.");
-                break;
-
-            default:
-                showMessage("ℹ️ هذا القسم غير متاح حالياً.");
-                break;
-        }
-    }
-
-    // =========================
-    // RecyclerView
-    // =========================
 
     private void showRecycler(
-            int columns,
             DialogMenuAdapter.OnUserClickListener listener
     ) {
 
         RecyclerView recyclerView =
                 activity.findViewById(
-                        R.id.br_menu_recycler
+                        R.id.br_rec_view_menu
                 );
 
         if (recyclerView == null) {
@@ -824,13 +488,12 @@ public class Menu {
         recyclerView.setLayoutManager(
                 new GridLayoutManager(
                         activity,
-                        columns
+                        2
                 )
         );
 
         DialogMenuAdapter adapter =
                 new DialogMenuAdapter(
-                        activity,
                         dataDialogMenuArrayList,
                         listener
                 );
@@ -840,32 +503,6 @@ public class Menu {
         recyclerView.startAnimation(anim);
     }
 
-    // =========================
-    // رسالة مؤقتة
-    // =========================
-
-    private void showMessage(String message) {
-
-        if (menuTitle != null) {
-            menuTitle.setText(message);
-        }
-
-        new Handler().postDelayed(
-                () -> {
-
-                    if (menuTitle != null) {
-                        menuTitle.setText("☰ NAVARA ROLEPLAY");
-                    }
-
-                },
-                1500
-        );
-    }
-
-    // =========================
-    // إغلاق القائمة
-    // =========================
-
     public void close() {
 
         Utils.HideLayout(
@@ -873,4 +510,4 @@ public class Menu {
                 true
         );
     }
-    }              
+                    }
