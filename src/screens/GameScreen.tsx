@@ -1,58 +1,145 @@
-package com.touch.mobile.dark.modules;
+import React from 'react';
+import GtaSetupModule from '../modules/GtaSetupModule';
+import {
+  ScrollView,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+} from 'react-native';
+import { MainContainer } from '../components/Provider/MainContainer';
 
-import android.app.Activity;
-import android.content.Intent;
+export const GameScreen = React.memo(() => {
+  return (
+    <MainContainer paddingHorizontal={0}>
+      <ScrollView contentContainerStyle={styles.container}>
+        <View style={styles.banner}>
+          <Text style={styles.title}>NAVARA</Text>
+          <Text style={styles.subtitle}>ROLEPLAY</Text>
 
-import androidx.annotation.NonNull;
+          <Text style={styles.status}>● السيرفر متصل</Text>
 
-import com.facebook.react.bridge.Promise;
-import com.facebook.react.bridge.ReactApplicationContext;
-import com.facebook.react.bridge.ReactContextBaseJavaModule;
-import com.facebook.react.bridge.ReactMethod;
-import com.touch.mobile.dark.MainGTA;
+          <Text style={styles.players}>
+            👥 اللاعبين: 0 / 1000
+          </Text>
+        </View>
 
-public class GtaSetupModule extends ReactContextBaseJavaModule {
+        <View style={styles.info}>
+          <Text style={styles.infoTitle}>NAVARA ROLEPLAY</Text>
 
-    private final ReactApplicationContext context;
+          <Text style={styles.infoText}>
+            مرحباً بك في عالم NAVARA
+          </Text>
+        </View>
 
-    public GtaSetupModule(ReactApplicationContext reactContext) {
-        super(reactContext);
-        context = reactContext;
-    }
+        <TouchableOpacity
+          style={styles.playButton}
+          onPress={() => {
+            GtaSetupModule.startGame();
+          }}>
+          <Text style={styles.playText}>
+            دخول إلى NAVARA
+          </Text>
+        </TouchableOpacity>
 
-    @ReactMethod
-    public void startGame(Promise promise) {
-        try {
-            Activity activity = getCurrentActivity();
+        <View style={styles.news}>
+          <Text style={styles.newsTitle}>📰 آخر الأخبار</Text>
 
-            if (activity == null) {
-                promise.reject("NO_ACTIVITY", "لا توجد شاشة نشطة لتشغيل اللعبة");
-                return;
-            }
+          <Text style={styles.newsText}>
+            تابع آخر تحديثات وأخبار السيرفر هنا.
+          </Text>
+        </View>
+      </ScrollView>
+    </MainContainer>
+  );
+});
 
-            Intent intent = new Intent(activity, MainGTA.class);
-
-            Intent currentIntent = activity.getIntent();
-            if (currentIntent != null && currentIntent.getExtras() != null) {
-                intent.putExtras(currentIntent);
-            }
-
-            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-            intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
-
-            activity.startActivity(intent);
-
-            promise.resolve(true);
-
-        } catch (Exception e) {
-            promise.reject("START_GAME_ERROR", e.getMessage(), e);
-        }
-    }
-
-    @NonNull
-    @Override
-    public String getName() {
-        return "GtaSetupModule";
-    }
-  }
+const styles = StyleSheet.create({
+  container: {
+    padding: 16,
+    paddingBottom: 40,
+  },
+  banner: {
+    height: 220,
+    borderRadius: 20,
+    backgroundColor: '#151923',
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginBottom: 16,
+  },
+  title: {
+    color: '#ffffff',
+    fontSize: 42,
+    fontWeight: '900',
+    letterSpacing: 5,
+  },
+  subtitle: {
+    color: '#8cff00',
+    fontSize: 18,
+    fontWeight: '700',
+    letterSpacing: 4,
+  },
+  status: {
+    color: '#8cff00',
+    marginTop: 18,
+    fontSize: 15,
+    fontWeight: '700',
+  },
+  players: {
+    color: '#ffffff',
+    marginTop: 8,
+    fontSize: 15,
+    fontWeight: '600',
+  },
+  info: {
+    backgroundColor: '#202431',
+    borderRadius: 16,
+    padding: 18,
+    marginBottom: 16,
+  },
+  infoTitle: {
+    color: '#ffffff',
+    fontSize: 20,
+    fontWeight: '800',
+    textAlign: 'right',
+  },
+  infoText: {
+    color: '#aeb4c2',
+    fontSize: 14,
+    marginTop: 8,
+    textAlign: 'right',
+  },
+  playButton: {
+    height: 62,
+    borderRadius: 18,
+    backgroundColor: '#35c759',
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginBottom: 16,
+    elevation: 6,
+    shadowOpacity: 0.25,
+    shadowRadius: 8,
+  },
+  playText: {
+    color: '#ffffff',
+    fontSize: 20,
+    fontWeight: '900',
+    letterSpacing: 0.5,
+  },
+  news: {
+    backgroundColor: '#202431',
+    borderRadius: 16,
+    padding: 18,
+  },
+  newsTitle: {
+    color: '#ffffff',
+    fontSize: 18,
+    fontWeight: '800',
+    textAlign: 'right',
+  },
+  newsText: {
+    color: '#aeb4c2',
+    marginTop: 8,
+    textAlign: 'right',
+  },
+});
