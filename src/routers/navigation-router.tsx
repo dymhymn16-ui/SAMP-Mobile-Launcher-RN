@@ -75,7 +75,7 @@ export const NavigationRouter = React.memo(() => {
     animationDuration: 350,
     animation: 'flip',
   }}
-  initialRouteName="Initiation"
+  initialRouteName="Main"
 >
   
     
