@@ -13,10 +13,11 @@ import com.touch.mobile.dark.MainGTA;
 
 public class GtaSetupModule extends ReactContextBaseJavaModule {
 
-    ReactApplicationContext context = getReactApplicationContext();
+    private final ReactApplicationContext context;
 
-    GtaSetupModule(ReactApplicationContext reactContext) {
+    public GtaSetupModule(ReactApplicationContext reactContext) {
         super(reactContext);
+        context = reactContext;
     }
 
     @ReactMethod
@@ -24,15 +25,36 @@ public class GtaSetupModule extends ReactContextBaseJavaModule {
         try {
             Activity activity = getCurrentActivity();
 
-            Intent intent = new Intent(context, MainGTA.class);
-            assert activity != null;
-            intent.putExtras(activity.getIntent());
-            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-            context.startActivity(intent);
-            activity.finish();
+            if (activity == null) {
+                promise.reject(
+                    "NO_ACTIVITY",
+                    "لا توجد شاشة نشطة لتشغيل اللعبة"
+                );
+                return;
+            }
+
+            Intent intent = new Intent(activity, MainGTA.class);
+
+            Intent currentIntent = activity.getIntent();
+
+            if (currentIntent != null && currentIntent.getExtras() != null) {
+                intent.putExtras(currentIntent);
+            }
+
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+
+            activity.startActivity(intent);
+
+            promise.resolve(true);
 
         } catch (Exception e) {
-            promise.reject("Error", e);
+            promise.reject(
+                "START_GAME_ERROR",
+                e.getMessage(),
+                e
+            );
         }
     }
 
