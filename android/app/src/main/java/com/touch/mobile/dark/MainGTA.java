@@ -48,7 +48,7 @@ public class MainGTA extends WarMedia {
             once = true;
         }
 
-        System.out.println("MainGTA onCreate");
+        android.util.Log.e("NAVARA_MAIN_GTA", "MainGTA onCreate وصل إلى هنا");
         self = this;
         wantsMultitouch = true;
         wantsAccelerometer = true;
